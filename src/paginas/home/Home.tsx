@@ -1,16 +1,22 @@
-import './Home.css'
+import { useState, useEffect } from 'react'
 
-interface homeProps {
-  titulo: string
-  texto: string
-}
+function Home() {
+  const [completa, setCompleta] = useState(false)
+  const [tarefa, setTarefa] = useState('')
 
-function Home(props: homeProps) {
+  useEffect(() => {
+    if (completa) {
+      setTarefa('Parabéns! Você concluiu a tarefa!')
+    }
+  }, [completa])
+
   return (
-    <>
-      <h2>{props.titulo}</h2>
-      <p>{props.texto}</p>
-    </>
+    <div>
+      <h1>Tarefa</h1>
+      <h3>{tarefa}</h3>
+      <p>Conclua a tarefa</p>
+      <button onClick={() => setCompleta(true)}>Concluir Tarefa</button>
+    </div>
   )
 }
 
